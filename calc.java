@@ -18,7 +18,7 @@ public class calc extends JFrame implements KeyListener {
 		setLocationRelativeTo(null);
 		;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
+		// setResizable(false);
 
 		String[] keysets = { "1", "2", "3", "+", "-", "4", "5", "6", "x", "/", "7", "8", "9", "(", ")", "0", ".", "c","=" };
 		int keysize = keysets.length;
@@ -67,7 +67,6 @@ public class calc extends JFrame implements KeyListener {
 							model.clear();
 							model.addElement("잘못된 수식");
 						}
-						jList.setModel(model);
 						edi.setText(null);
 					}
 				});
@@ -79,7 +78,6 @@ public class calc extends JFrame implements KeyListener {
 						edi.setText(null);
 						model.clear();
 						model.addElement("0");
-						jList.setModel(model);
 					}
 				});
 			} else {
@@ -121,7 +119,12 @@ public class calc extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		String ed = edi.getText();
-		if (e.getKeyCode() == e.VK_ENTER || e.getKeyCode() == e.VK_EQUALS) {
+		if(Equation.isNum(e.getKeyChar()+"",0)){
+			if(!edi.hasFocus()){
+			ed += e.getKeyChar();
+			edi.setText(ed);
+			}
+		}else if (e.getKeyCode() == e.VK_ENTER || e.getKeyCode() == e.VK_EQUALS) {
 			ed = Equation.onlyEq(ed);
 			if(ed.equals("")) ed="0";
 			if (Equation.validEq(ed)) {
@@ -131,18 +134,14 @@ public class calc extends JFrame implements KeyListener {
 				model.clear();
 				model.addElement("잘못된 수식");
 			}
-			jList.setModel(model);
 			edi.setText(null);
-		}
-		else if(e.getKeyCode() == e.VK_BACK_SPACE){
-			ed = ed.substring(0,ed.length()-1);
-			edi.setText(ed);
-		}
-		else if(e.getKeyCode()==e.VK_SHIFT) {}
-		else {
-			ed += e.getKeyChar();
-			edi.setText(ed);
-		}
+		}else if(e.getKeyCode() == e.VK_BACK_SPACE){
+			if(!ed.equals("")){
+				ed = ed.substring(0,ed.length()-1);
+				edi.setText(ed);
+			}
+		}else if(e.getKeyCode()==e.VK_SHIFT) {}
+		else{}
 //		throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
 	}
 

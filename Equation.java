@@ -101,7 +101,7 @@ public class Equation {
 	}
 	
 	//숫자인지 검사
-	private static boolean isNum(String s, int f) {
+	public static boolean isNum(String s, int f) {
 		if (sets().keySet().contains(s) && f==0) return true;
 		if (s.equals(".") && f==0) return true;
 		try {
@@ -142,6 +142,7 @@ public class Equation {
 				flag = 0;
 			}
 		}
+		if(flag==1)return false;
 		return true;
 	}
 	public static boolean validEq(String str) {
@@ -175,6 +176,7 @@ public class Equation {
 				flag = 0;
 			}
 		}
+		if(flag==1)return false;
 		return true;
 	}
 	//사칙연산
