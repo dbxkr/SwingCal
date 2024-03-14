@@ -124,7 +124,7 @@ public class calc extends JFrame implements KeyListener {
 			ed += e.getKeyChar();
 			edi.setText(ed);
 			}
-		}else if (e.getKeyCode() == e.VK_ENTER || e.getKeyCode() == e.VK_EQUALS) {
+		}else if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_EQUALS) {
 			ed = Equation.onlyEq(ed);
 			if(ed.equals("")) ed="0";
 			if (Equation.validEq(ed)) {
@@ -135,12 +135,12 @@ public class calc extends JFrame implements KeyListener {
 				model.addElement("잘못된 수식");
 			}
 			edi.setText(null);
-		}else if(e.getKeyCode() == e.VK_BACK_SPACE){
+		}else if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
 			if(!ed.equals("")){
 				ed = ed.substring(0,ed.length()-1);
 				edi.setText(ed);
 			}
-		}else if(e.getKeyCode()==e.VK_SHIFT) {}
+		}else if(e.getKeyCode()==KeyEvent.VK_SHIFT) {}
 		else{}
 //		throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
 	}

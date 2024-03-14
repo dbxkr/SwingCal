@@ -105,7 +105,7 @@ public class Equation {
 		if (sets().keySet().contains(s) && f==0) return true;
 		if (s.equals(".") && f==0) return true;
 		try {
-			double n = Double.parseDouble(s);
+			Double.parseDouble(s);
 			return true;
 		} catch (Exception e) {}
 		return false;
